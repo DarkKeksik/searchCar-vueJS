@@ -19,12 +19,19 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="search">Find your car</label>
-                    <input id="search" class="form-control" type="text" placeholder="Name, model ...">
+                    <input
+                        id="search"
+                        class="form-control"
+                        type="text"
+                        placeholder="Name, model ..."
+                        v-model="search "
+                    >
+                    {{ search }}
                 </div>
                 <hr/>
                 <ul class="list-group">
                     <li
-                        v-for="(car, index) of cars"
+                        v-for="(car, index) of filteredCars"
                         class="list-group-item list-group-item-action pointer"
                         v-on:click="selectCar(index)"
                         v-bind:class="{'active': selectActive === index}"
@@ -35,35 +42,76 @@
             </div>
 
             <div class="col-md-8 pt-4">
-                <div class="row">
-                    <div class="col-md-5">
-                        <h2>{{ carActive.name }}</h2>
-                        <img
-                            class="searchForm__img"
-                            v-bind:src="carActive.image"
-                            v-bind:alt="carActive.name"
-                        >
-                    </div>
-                    <div class="col-md-7 pt-2 pl-4">
-                        <h5>Car details</h5>
-                        <ul>
-                            <li>{{ carActive.name }} - <strong>{{ carActive.model }}</strong></li>
-                            <li>Year <strong>{{ carActive.year }}</strong></li>
-                            <li>Owner <strong>{{ carActive.owner }}</strong></li>
-                        </ul>
-                        <p v-if="phoneVisibility"> {{ carActive.phone }}</p>
+                <div class="detailsInfo">
+                   <div class="row">
+                        <div class="col-md-5">
+                            <h2>{{ carActive.name }} {{ carActive.model }}</h2>
+                            <img
+                                class="searchForm__img"
+                                v-bind:src="carActive.image"
+                                v-bind:alt="carActive.name"
+                            >
+                        </div>
+                        <div class="col-md-7 pt-2 pl-4">
+                            <h5> {{ carActive.name }} {{ carActive.model }} </h5>
+                            <ul>
+                                <li>{{ carActive.name }} - <strong>{{ carActive.model }}</strong></li>
+                                <li>Year <strong>{{ carActive.year }}</strong></li>
+                                <li>Owner <strong>{{ carActive.owner }}</strong></li>
+                            </ul>
+                            <div class="detailsInfo__phone">
+                                <p v-if="phoneVisibility"> {{ carActive.phone }}</p>
+                            </div>
+                            <button
+                                class="btn btn-outline-success mr-2"
+                                v-on:click="phoneVisibility = !phoneVisibility"
+                                v-text="phoneBtnText"
+                            >
+                            </button>
+                            <button
+                                class="btn btn-primary"
+                                @click="modalVisibility = true">
+                                Buy
+                            </button>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        
+        <!-- Модалка -->
+        <div class="modal fade show" v-if="modalVisibility" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Do u want to buy this car?</h5>
                         <button
-                            class="btn btn-outline-success mr-2"
-                            v-on:click="phoneVisibility = true"
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                            @click="modalVisibility = false"
                         >
-                            Show phone
-                        </button>
-                        <button class="btn btn-primary">Buy</button>
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>...</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                        @click="modalVisibility = false">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="modal-backdrop fade show" v-if="modalVisibility"></div>
     </div>
+    
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="vue/vue.min.js"></script>
     <script src="static/js/script.js"></script>

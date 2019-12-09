@@ -2,6 +2,12 @@
 .pointer {
   cursor: pointer;
 }
+.modal {
+  display: block;
+}
 .searchForm__img {
   max-width: 21rem;
+}
+.detailsInfo__phone {
+  min-height: 2rem;
 }
