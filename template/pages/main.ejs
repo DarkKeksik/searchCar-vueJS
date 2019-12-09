@@ -74,8 +74,24 @@
                                 Buy
                             </button>
                         </div>
-                    </div>                    
+                    </div>                   
                 </div>
+            </div>
+        </div>
+        <div class="row mt-2" v-if="logs.length !== 0">
+            <div class="col-md-12">
+                <ul class="list-group">
+                    <li
+                        v-for="log in logs"
+                        class="list-group-item list-group-item-secondary"
+                        v-bind:class="{
+                            'list-group-item-secondary': log.type === 'cnl',
+                            'list-group-item-success': log.type === 'ok'
+                        }"
+                    >
+                        {{ log.text }} ({{ log.date | date }})
+                    </li>
+                </ul>
             </div>
         </div>
         
@@ -96,15 +112,28 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                        <p>...</p>
+                        <p>
+                            Current car - <strong>{{ carActive.name }}</strong>
+                        </p>
+                        <ul>
+                            <li>{{ carActive.name }} - <strong>{{ carActive.model }}</strong></li>
+                            <li>Year <strong>{{ carActive.year }}</strong></li>
+                            <li>Owner <strong>{{ carActive.owner }}</strong></li>
+                        </ul>
                     </div>
                     <div class="modal-footer">
                         <button
                         type="button"
                         class="btn btn-secondary"
                         data-dismiss="modal"
-                        @click="modalVisibility = false">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        v-on:click = "cancelOrder"
+                        >Cancel</button>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            v-on:click = "newOrder"
+                        > Buy
+                        </button>
                     </div>
                 </div>
             </div>
