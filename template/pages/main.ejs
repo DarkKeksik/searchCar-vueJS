@@ -27,6 +27,7 @@
                         v-for="(car, index) of cars"
                         class="list-group-item list-group-item-action pointer"
                         v-on:click="selectCar(index)"
+                        v-bind:class="{'active': selectActive === index}"
                     >
                         {{ car.name }} - {{ car.model }}
                     </li>
@@ -50,8 +51,13 @@
                             <li>Year <strong>{{ carActive.year }}</strong></li>
                             <li>Owner <strong>{{ carActive.owner }}</strong></li>
                         </ul>
-                        <p>{{ carActive.phone }}</p>
-                        <button class="btn btn-outline-success mr-2">Show phone</button>
+                        <p v-if="phoneVisibility"> {{ carActive.phone }}</p>
+                        <button
+                            class="btn btn-outline-success mr-2"
+                            v-on:click="phoneVisibility = true"
+                        >
+                            Show phone
+                        </button>
                         <button class="btn btn-primary">Buy</button>
                     </div>
                 </div>
