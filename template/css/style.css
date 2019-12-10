@@ -22,7 +22,7 @@
 }
 .phone-enter,
 .phone-leave-to {
-  transform: translateX(50px);
+  transform: translateX(3.125rem);
   opacity: 0;
 }
 .modal-enter-active,
@@ -31,7 +31,7 @@
 }
 .modal-enter,
 .modal-leave-to {
-  transform: translateY(-100px);
+  transform: translateY(-6.25rem);
   opacity: 0;
 }
 .fade-enter-active {
@@ -57,4 +57,8 @@
 }
 .detailsInfo__phone {
   min-height: 2rem;
+}
+.logs {
+  max-height: 25rem;
+  overflow: auto;
 }

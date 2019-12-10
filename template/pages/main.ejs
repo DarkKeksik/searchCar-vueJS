@@ -82,18 +82,20 @@
         </div>
         <div class="row mt-2" v-if="logs.length !== 0">
             <div class="col-md-12">
-                <ul class="list-group">
-                    <li
-                        v-for="log in logs"
-                        class="list-group-item list-group-item-secondary"
-                        v-bind:class="{
-                            'list-group-item-secondary': log.type === 'cnl',
-                            'list-group-item-success': log.type === 'ok'
-                        }"
-                    >
-                        {{ log.text }} ({{ log.date | date }})
-                    </li>
-                </ul>
+                <div class="logs">
+                    <ul class="list-group">
+                        <li
+                            v-for="log in logs"
+                            class="list-group-item list-group-item-secondary"
+                            v-bind:class="{
+                                'list-group-item-secondary': log.type === 'cnl',
+                                'list-group-item-success': log.type === 'ok'
+                            }"
+                        >
+                            {{ log.text }} ({{ log.date | date }})
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         
