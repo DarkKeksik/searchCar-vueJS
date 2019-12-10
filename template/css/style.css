@@ -5,6 +5,53 @@
 .modal {
   display: block;
 }
+/*
+    Animations vue
+
+    Начальное состояние элемента ( *-enter )
+    Продолжительность анимации ( *-enter-active )
+    Тот состояние к которому стремимся ( *-enter-to )
+
+    Начальное состояние элемента ( *-leave )
+    Продолжительность анимации ( *-leave-active )
+    Тот состояние к которому стремимся ( *-leave-to )
+*/
+.phone-enter-active,
+.phone-leave-active {
+  transition: all .5s;
+}
+.phone-enter,
+.phone-leave-to {
+  transform: translateX(50px);
+  opacity: 0;
+}
+.modal-enter-active,
+.modal-leave-active {
+  transition: all .3s;
+}
+.modal-enter,
+.modal-leave-to {
+  transform: translateY(-100px);
+  opacity: 0;
+}
+.fade-enter-active {
+  animation: .3s fade forwards;
+}
+.fade-leave-active {
+  animation: .3s fade reverse;
+}
+.fade-enter,
+.modal-leave-to {
+  opacity: 0;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: .5;
+  }
+}
 .searchForm__img {
   max-width: 21rem;
 }

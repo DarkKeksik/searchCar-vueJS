@@ -60,7 +60,9 @@
                                 <li>Owner <strong>{{ carActive.owner }}</strong></li>
                             </ul>
                             <div class="detailsInfo__phone">
-                                <p v-if="phoneVisibility"> {{ carActive.phone }}</p>
+                                <transition name="phone">
+                                    <p v-if="phoneVisibility"> {{ carActive.phone }}</p>
+                                </transition>
                             </div>
                             <button
                                 class="btn btn-outline-success mr-2"
@@ -96,7 +98,8 @@
         </div>
         
         <!-- Модалка -->
-        <div class="modal fade show" v-if="modalVisibility" tabindex="-1" role="dialog">
+        <transition name="modal">
+            <div class="modal fade show" v-if="modalVisibility" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -138,7 +141,10 @@
                 </div>
             </div>
         </div>
-        <div class="modal-backdrop fade show" v-if="modalVisibility"></div>
+        </transition>
+        <transition name="fade">
+            <div class="modal-backdrop fade show" v-if="modalVisibility"></div>
+        </transition>
     </div>
     
     <script src="bootstrap/js/bootstrap.min.js"></script>
