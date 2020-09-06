@@ -8,6 +8,6 @@ ____
 
 ## Стек
 ____
-Node.js (jsx)
-npm: Vue.js, bootstrap 4
-Less.css
+* Node.js (jsx)
+* npm: Vue.js, bootstrap 4
+* Less.css
